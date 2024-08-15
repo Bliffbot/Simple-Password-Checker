@@ -1,10 +1,12 @@
 import discord
 from discord import app_commands
 from discord.ext import commands, tasks
-import os
 import math
+import sys
+import os
 
 
+sys.stdout = sys.stderr
 intents = discord.Intents.none()
 client = commands.Bot(command_prefix = "/", intents = intents)
 client.remove_command("help")
@@ -95,6 +97,5 @@ async def check(interaction: discord.Interaction,
 		check_embed_2.add_field(name = "Petayears", value = f"{petayears:,.2f}", inline = False)
 	check_embed_2.set_footer(text = "by Bliffbot#7080")
 	await interaction.followup.send(embeds = [check_embed_1, check_embed_2], ephemeral = ephemeral)
-
 
 client.run(os.environ["DISCORD_BOT_TOKEN"])
